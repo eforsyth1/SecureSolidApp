@@ -10,3 +10,10 @@ Due to issues in development, the Pod intended to be retrieved must be manually 
 
 To run: **npm run start**
 
+## How to use:
+
+To set an security policy:
+- Ensure acl:Control is set
+- Enter the full URL you wish to set ACP policy for e.g. https://solidweb.me/Example/Resource/.acr
+- Enter the ACP policy within the file context
+
