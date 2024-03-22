@@ -30,10 +30,13 @@ Therefore, the Clark-Wilson model results were producible and access was restric
 ## Reproducing Experimental Results
 
 **Setting Up the Apps**
-1. Download Penny (branch Penny) and SolidFileManager (branch SolidFileManager) from the branches within this repository - the client IDs are already within the files.
-2. Run the apps by entering **npx next dev -p 5000** and **npm run start**, for Penny and SolidFileManager respectively. The SolidFileManager must be ran before the security app due to localhost ports.
-3. Create two different resources within the Pod to test and represent Resource1 and Resource2 within the Clark-Wilson model.
-4. If an existing ACP policy exists for a resource this is fine, if not a blank .acr file must exist for the resource.
+1. Download Penny (https://gitlab.com/vincenttunru/penny)
+   a. Users must create a **.env.local** and store the following: **NEXT_PUBLIC_CLIENT_ID="https://teamid.live/ClientPod/public/clientid.jsonld"**
+2. Download SolidFileManager (branch SolidFileManager) from the branches within this repository - the client IDs are already within the files.
+   a. Users must add this line **clientId: "https://teamid.live/ClientPod/public1/clientid.jsonld",** into the login function at line 23 of Actions.ts
+3. Run the apps by entering **npx next dev -p 5000** and **npm run start**, for Penny and SolidFileManager respectively. The SolidFileManager must be ran before the security app due to localhost ports.
+4. Create two different resources within the Pod to test and represent Resource1 and Resource2 within the Clark-Wilson model.
+5. If an existing ACP policy exists for a resource this is fine, if not a blank .acr file must exist for the resource.
 
 **Setting Up the Secure Solid App**
 1. Download the repository on this branch (main) - the client ID is within the files.
