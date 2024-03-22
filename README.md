@@ -21,7 +21,7 @@ The security app had a policy set for the Pod where acl:Control only access was 
 
 ## Results 
 
-The security app produced the desired results where a user can log into their Solid Pod using their IdP and set their ACP policy for a given resource. If the user has an existing ACP policy for a resource this is overwritten with the new ACP policy saved. However, if there is no ACP policy for a resource an existing blank .acr file must exist*.
+The security app produced the desired results where a user can log into their Solid Pod using their IdP and set their ACP policy for a given resource. If the user has an existing ACP policy for a resource this is overwritten with the new ACP policy saved. However, if there is no ACP policy for a resource an existing blank .acr file must exist**.
 
 Firstly, access was tested when acp:client was omitted. As expected Resource1 was accessible by app2 and, similarly Resource2 via app1. Subsequently producing an unintended information. After the acp:client was set, Resource1 could only be accessed via app1 and likewise Resource2 access only by app2.
 
@@ -37,7 +37,7 @@ Therefore, the Clark-Wilson model results were producible and access was restric
 
 **Setting Up the Secure Solid App**
 1. Download the repository on this branch (main) - the client ID is within the files.
-2. The Pod intended to be retrieved must be manually added to the file. Please enter the WebID in src/acpControl.tsx on line 18. **
+2. The Pod intended to be retrieved must be manually added to the file. Please enter the WebID in src/acpControl.tsx on line 18. ***
 3. Run the app by entering **npm run start** (the security app should not run on the same port as SolidFileManager)
 
 **Pod ACP Policy**
@@ -87,6 +87,6 @@ The inclusion of acp:client is imperative to include within an ACP policy, not o
 ## Notes
 The login process and basic functionality within this app has been adapted, as LDO was not required, from the following tutorial: https://github.com/jaxoncreed/ldo-react-tutorial-1. However, the core functionally of setting an ACP policy has been implemented by myself.
 
-* Due to an access forbidden error when creating an .acr file, users must manually implement a blank .acr file.
+** Due to an access forbidden error when creating an .acr file, users must manually implement a blank .acr file.
 
-** Due to issues in development, the Pod intended to be retrieved must be manually added to the file as the WebID could not be carried over from Login page. 
+*** Due to issues in development, the Pod intended to be retrieved must be manually added to the file as the WebID could not be carried over from Login page. 
