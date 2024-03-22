@@ -46,8 +46,8 @@ To ensure the intended results are produced users must set an ACP similar to the
 @prefix acl: <http://www.w3.org/ns/auth/acl#>.
 @prefix acp: <http://www.w3.org/ns/solid/acp#>.
 
-# Pod owners have no access rights,
-# unless specifically authorized in other ACRs.
+Pod owners have no access rights,
+unless specifically authorized in other ACRs.
 <#root>
     a acp:AccessControlResource;
     # Set the access to the root storage folder itself
@@ -57,7 +57,7 @@ To ensure the intended results are produced users must set an ACP similar to the
     acp:memberAccessControl <#secureApp>.
 
 
-# The public only has read access
+The public only has read access
 <#publicReadAccess>
     a acp:AccessControl;
     acp:apply [
