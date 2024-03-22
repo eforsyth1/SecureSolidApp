@@ -30,7 +30,7 @@ Therefore, the Clark-Wilson model results were producible and access was restric
 ## Reproducing Experimental Results
 
 **Setting Up the Apps**
-1. Download Penny (https://gitlab.com/vincenttunru/penny)
+1. Download Penny ([branch Penny](https://gitlab.com/vincenttunru/penny))
    a. Users must create a **.env.local** and store the following: **NEXT_PUBLIC_CLIENT_ID="https://teamid.live/ClientPod/public/clientid.jsonld"**
 2. Download SolidFileManager ([branch SolidFileManager](https://github.com/Otto-AA/solid-filemanager)) from the branches within this repository - the client IDs are already within the files.
    a. Users must add this line **clientId: "https://teamid.live/ClientPod/public1/clientid.jsonld",** into the login function at line 23 of Actions.ts
