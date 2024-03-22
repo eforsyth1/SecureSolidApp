@@ -43,44 +43,8 @@ Therefore, the Clark-Wilson model results were producible and access was restric
 **Pod ACP Policy**
 To ensure the intended results are produced users must set an ACP similar to the below in the root of their Pod:
 
-@prefix acl: <http://www.w3.org/ns/auth/acl#>.
-@prefix acp: <http://www.w3.org/ns/solid/acp#>.
+![image](https://github.com/eforsyth1/SecureSolidApp/assets/164050959/73698628-4c86-4126-a05e-6e362815e183)
 
-Pod owners have no access rights,
-unless specifically authorized in other ACRs.
-<#root>
-    a acp:AccessControlResource;
-    # Set the access to the root storage folder itself
-    acp:resource <./>;
-    # The homepage is readable by the public
-    acp:accessControl <#publicReadAccess>, <#secureApp>;
-    acp:memberAccessControl <#secureApp>.
-
-
-The public only has read access
-<#publicReadAccess>
-    a acp:AccessControl;
-    acp:apply [
-        a acp:Policy;
-        acp:allow acl:Read;
-        acp:anyOf [
-            a acp:Matcher;
-            acp:agent acp:PublicAgent
-        ]
-    ].
-
-<#secureApp>
-    a acp:AccessControl;
-    acp:apply [
-        a acp:Policy;
-        acp:allow acl:Control;
-        acp:allOf [
-            a acp:Matcher;
-            acp:client <https://teamid.live/ClientPod/demoApp/clientid.jsonld>;
-            acp:agent <http://IdP/Example-Pod/profile/card#me>;
-            acp:issuer <http://IdP/>
-        ]
-    ].
 
 # Clark-Wilson and the Security App
 
