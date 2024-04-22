@@ -51,7 +51,7 @@ To ensure the intended results are produced users must set an ACP similar to the
 
 ![image](https://github.com/eforsyth1/SecureSolidApp/assets/164050959/73698628-4c86-4126-a05e-6e362815e183)
 
-@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+@prefix acl: <http://www.w3.org/ns/auth/acl#>. <br>
 @prefix acp: <http://www.w3.org/ns/solid/acp#>.
 
 <#root>
