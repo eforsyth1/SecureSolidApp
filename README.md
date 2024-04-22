@@ -33,7 +33,7 @@ The following is based upon the set using IntelliJ, however could simply be ran 
 **Setting Up the Apps**
 1. Download Penny ([branch Penny](https://gitlab.com/vincenttunru/penny)).
    * Users must create a new file **.env.local** in the root folder containing the following line: **NEXT_PUBLIC_CLIENT_ID="https://solidweb.me/ClientPod/public/clientid.jsonld"**
-   * Users must add their Identity Provider (IdP) e.g. https://solidweb.me to the list of IdPs at line 38 within **src/functions/connect.ts**
+   * Users must add their Identity Provider (IdP) e.g. http://localhost:3000 to the list of IdPs at line 38 within **src/functions/connect.ts**
 2. Download SolidFileManager ([branch SolidFileManager](https://github.com/Otto-AA/solid-filemanager)).
    * Users must add this line **clientId: "https://solidweb.me/ClientPod/public1/clientid.jsonld",** into the login function below line 25 of Actions.ts. The file Action.ts can be found in the folder **src/Actions**.
 3. Ensure **npm** and **react-scripts** are installed by simply running the command **npm install** and **npm install react-scripts** respectively.    
@@ -155,7 +155,7 @@ Users may have an existing policy set up for a resource but if not refer to **Se
 1. Login into the security app using your IdP
 2. Clicking "Fetch Pod Resources" button will return the top-level of containers to a user (providing public read access has been granted within root Access Control Resource (ACR))
 3. Users must set a default ACP policy which omits acp:client by clicking the Set a Security Policy button.
-4. Within the filename, users must enter the full URL of resource or container they wish to set the policy for and append .acr - e.g. https://solidcommunity.net/Example-Pod/Resource1/.acr for a container.
+4. Within the filename, users must enter the full URL of resource or container they wish to set the policy for and append .acr - e.g. http://localhost:3000/Example-Pod/Resource1/.acr for a container.
 5. Within the file context, users must enter a complete ACP policy such as the default ACP policy listed in Figure 2. 
 6. Press save changes
 7. Repeat for Resource2
@@ -171,12 +171,12 @@ Users may have an existing policy set up for a resource but if not refer to **Se
 1. Once again, login into the security app using your IdP if you have not already done so
 2. Clicking "Fetch Pod Resources" button will return the top-level of containers to a user (providing public read access has been granted)
 3. Users must set a default ACP policy which includes acp:client for Resource1 by clicking the Set a Security Policy button.
-   a. Within the filename, users must enter the full URL of resource or container they wish to set the policy for and append .acr - e.g. https://solidcommunity.net/Example-Pod/Resource1/.acr
+   a. Within the filename, users must enter the full URL of resource or container they wish to set the policy for and append .acr - e.g. http://localhost:3000/Example-Pod/Resource1/.acr
    b. Within the file context, users must adapt Figure 2 default ACP policy ensuring the inclusion of acp:client has been included for Resource1 via app1 using the clientID provided for Penny by entering **acp:client <https://solidweb.me/ClientPod/public/clientid.jsonld>;** above **acp:agent**.
    c. Press save changes
-4.  Users must set a adapt Figure 3's default ACP policy to include acp:client for Resource2.
-   a. Within the filename, users must enter the full URL of resource or container they wish to set the policy for and append .acr - e.g. https://solidcommunity.net/Example-Pod/Resource2/.acr
-   b. Within the file context, users must enter a complete ACP policy ensuring the inclusion of acp:client has been included for Resource2 via app2 using the clientID provided for SolidFileManager by entering **acp:client <https://solidweb.me/ClientPod/public1/clientid.jsonld>;** above **acp:agent** for both the Pod Owner and additional agent (if you wish access to be permitted)
+4.  Users must set a adapt Figure 3's default ACP policy to include acp:client for Resource2.<br>
+   a. Within the filename, users must enter the full URL of resource or container they wish to set the policy for and append .acr - e.g. https://solidcommunity.net/Example-Pod/Resource2/.acr <br>
+   b. Within the file context, users must enter a complete ACP policy ensuring the inclusion of acp:client has been included for Resource2 via app2 using the clientID provided for SolidFileManager by entering **acp:client <https://solidweb.me/ClientPod/public1/clientid.jsonld>;** above **acp:agent** for both the Pod Owner and additional agent (if you wish access to be permitted) <br>
    c. Press save changes
 
 **Testing the Clark-Wilson Model Including acp:client**
