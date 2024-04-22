@@ -54,37 +54,35 @@ To ensure the intended results are produced users must set an ACP similar to the
 @prefix acl: <http://www.w3.org/ns/auth/acl#>. <br>
 @prefix acp: <http://www.w3.org/ns/solid/acp#>.
 
-<#root>
-    a acp:AccessControlResource;
-    # Set the access to the root storage folder itself
-    acp:resource <./>;
-    # The homepage is readable by the public
-    acp:accessControl <#publicReadAccess>, <#secureApp>;
-    acp:memberAccessControl <#secureApp>.
+<#root> <br>
+    a acp:AccessControlResource; <br>
+    acp:resource <./>; <br>
+    acp:accessControl <#publicReadAccess>, <#secureApp>; <br>
+    acp:memberAccessControl <#secureApp>. <br>
 
-<#publicReadAccess>
-    a acp:AccessControl;
-    acp:apply [
-        a acp:Policy;
-        acp:allow acl:Read;
-        acp:anyOf [
-            a acp:Matcher;
-            acp:agent acp:PublicAgent
-        ]
-    ].
+<#publicReadAccess> <br>
+    a acp:AccessControl; <br>
+    acp:apply [ <br>
+        a acp:Policy; <br>
+        acp:allow acl:Read; <br>
+        acp:anyOf [ <br>
+            a acp:Matcher; <br>
+            acp:agent acp:PublicAgent <br>
+        ] <br>
+    ]. <br>
 
-<#secureApp>
-    a acp:AccessControl;
-    acp:apply [
-        a acp:Policy;
-        acp:allow acl:Control;
-        acp:allOf [
-            a acp:Matcher;
-            acp:client <https://solidweb.me/ClientPod/demoApp/clientid.jsonld>;
-            acp:agent <https://localhost:3000/Example/profile/card#me>;
-            acp:issuer <https://localhost:3000/>
-        ]
-    ].
+<#secureApp> <br>
+    a acp:AccessControl; <br>
+    acp:apply [ <br>
+        a acp:Policy; <br>
+        acp:allow acl:Control; <br>
+        acp:allOf [ <br>
+            a acp:Matcher; <br>
+            acp:client <https://solidweb.me/ClientPod/demoApp/clientid.jsonld>; <br>
+            acp:agent <http://localhost:3000/Example/profile/card#me>; <br>
+            acp:issuer <http://localhost:3000/> <br>
+        ] <br>
+    ].<br>
 
 
 # Clark-Wilson and the Security App
