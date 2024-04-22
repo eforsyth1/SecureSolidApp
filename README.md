@@ -51,6 +51,41 @@ To ensure the intended results are produced users must set an ACP similar to the
 
 ![image](https://github.com/eforsyth1/SecureSolidApp/assets/164050959/73698628-4c86-4126-a05e-6e362815e183)
 
+@prefix acl: <http://www.w3.org/ns/auth/acl#>.
+@prefix acp: <http://www.w3.org/ns/solid/acp#>.
+
+<#root>
+    a acp:AccessControlResource;
+    # Set the access to the root storage folder itself
+    acp:resource <./>;
+    # The homepage is readable by the public
+    acp:accessControl <#publicReadAccess>, <#secureApp>;
+    acp:memberAccessControl <#secureApp>.
+
+<#publicReadAccess>
+    a acp:AccessControl;
+    acp:apply [
+        a acp:Policy;
+        acp:allow acl:Read;
+        acp:anyOf [
+            a acp:Matcher;
+            acp:agent acp:PublicAgent
+        ]
+    ].
+
+<#secureApp>
+    a acp:AccessControl;
+    acp:apply [
+        a acp:Policy;
+        acp:allow acl:Control;
+        acp:allOf [
+            a acp:Matcher;
+            acp:client <https://solidweb.me/ClientPod/demoApp/clientid.jsonld>;
+            acp:agent <https://localhost:3000/Example/profile/card#me>;
+            acp:issuer <https://localhost:3000/>
+        ]
+    ].
+
 
 # Clark-Wilson and the Security App
 
