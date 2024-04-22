@@ -55,7 +55,7 @@ To ensure the intended results are produced users must set an ACP similar to the
 @prefix acp: <http://www.w3.org/ns/solid/acp#>.
 
 <#root> <br>
-    a acp:AccessControlResource; <br>
+&nbsp;&nbsp;a acp:AccessControlResource; <br>
     acp:resource <./>; <br>
     acp:accessControl <#publicReadAccess>, <#secureApp>; <br>
     acp:memberAccessControl <#secureApp>. <br>
