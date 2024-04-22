@@ -47,43 +47,95 @@ The following is based upon the set using IntelliJ, however could simply be ran 
 3. Run the app by entering **npm run start** (the security app should not run on the same port as SolidFileManager)
 
 **Pod ACP Policy**
-To ensure the intended results are produced users must set an ACP similar to the below in the root of their Pod:
-
-![image](https://github.com/eforsyth1/SecureSolidApp/assets/164050959/73698628-4c86-4126-a05e-6e362815e183)
+To ensure the intended results are produced users must set an ACP similar to the below in the root of their Pod (**Figure 1**):
 
 @prefix acl: <http://www.w3.org/ns/auth/acl#>. <br>
 @prefix acp: <http://www.w3.org/ns/solid/acp#>.
 
 <#root> <br>
 &nbsp;&nbsp;a acp:AccessControlResource; <br>
-    acp:resource <./>; <br>
-    acp:accessControl <#publicReadAccess>, <#secureApp>; <br>
-    acp:memberAccessControl <#secureApp>. <br>
+&nbsp;&nbsp;acp:resource <./>; <br>
+&nbsp;&nbsp;acp:accessControl <#publicReadAccess>, <#secureApp>; <br>
+&nbsp;&nbsp;acp:memberAccessControl <#secureApp>. <br>
 
 <#publicReadAccess> <br>
-    a acp:AccessControl; <br>
-    acp:apply [ <br>
-        a acp:Policy; <br>
-        acp:allow acl:Read; <br>
-        acp:anyOf [ <br>
-            a acp:Matcher; <br>
-            acp:agent acp:PublicAgent <br>
-        ] <br>
-    ]. <br>
+&nbsp;&nbsp;a acp:AccessControl; <br>
+&nbsp;&nbsp;acp:apply [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;a acp:Policy; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allow acl:Read; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:anyOf [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a acp:Matcher; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acp:agent acp:PublicAgent <br>
+&nbsp;&nbsp;&nbsp;&nbsp;] <br>
+&nbsp;&nbsp;]. <br>
 
 <#secureApp> <br>
-    a acp:AccessControl; <br>
-    acp:apply [ <br>
-        a acp:Policy; <br>
-        acp:allow acl:Control; <br>
-        acp:allOf [ <br>
-            a acp:Matcher; <br>
-            acp:client <https://solidweb.me/ClientPod/demoApp/clientid.jsonld>; <br>
-            acp:agent <http://localhost:3000/Example/profile/card#me>; <br>
-            acp:issuer <http://localhost:3000/> <br>
-        ] <br>
-    ].<br>
+&nbsp;&nbsp;a acp:AccessControl; <br>
+&nbsp;&nbsp;acp:apply [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;a acp:Policy; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allow acl:Control; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allOf [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a acp:Matcher; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acp:client <https://solidweb.me/ClientPod/demoApp/clientid.jsonld>; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acp:agent <http://localhost:3000/Example/profile/card#me>; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acp:issuer <http://localhost:3000/> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;] <br>
+&nbsp;&nbsp;].<br>
 
+This is a default ACP policy for Resource1, for a container (**Figure 2**):
+
+@prefix acl: <http://www.w3.org/ns/auth/acl#>. <br>
+@prefix acp: <http://www.w3.org/ns/solid/acp#>.
+
+<#root> <br>
+&nbsp;&nbsp;a acp:AccessControlResource; <br>
+&nbsp;&nbsp;acp:resource <http://localhost:3000/Example/Resource1/>; <br>
+&nbsp;&nbsp;acp:accessControl <#ownerAccess1>; <br>
+&nbsp;&nbsp;acp:memberAccessControl <#ownerAccess1>. <br>
+
+<#ownerAccess1> <br>
+&nbsp;&nbsp;a acp:AccessControl; <br>
+&nbsp;&nbsp;acp:apply [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;a acp:Policy; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allow acl:Read, acl:Write; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allOf [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a acp:Matcher; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acp:agent <http://localhost:3000/Example/profile/card#me> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;] <br>
+&nbsp;&nbsp;].<br>
+
+This is a default ACP policy for Resource2, for a container (**Figure 3**):
+
+@prefix acl: <http://www.w3.org/ns/auth/acl#>. <br>
+@prefix acp: <http://www.w3.org/ns/solid/acp#>.
+
+<#root> <br>
+&nbsp;&nbsp;a acp:AccessControlResource; <br>
+&nbsp;&nbsp;acp:resource <http://localhost:3000/Example/Resource2/>; <br>
+&nbsp;&nbsp;acp:accessControl <#ownerAccess2>, <#externalAgent>; <br>
+&nbsp;&nbsp;acp:memberAccessControl <#ownerAccess2>, <#externalAgent>. <br>
+
+<#ownerAccess2> <br>
+&nbsp;&nbsp;a acp:AccessControl; <br>
+&nbsp;&nbsp;acp:apply [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;a acp:Policy; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allow acl:Read, acl:Write; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allOf [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a acp:Matcher; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acp:agent <http://localhost:3000/Example/profile/card#me> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;] <br>
+&nbsp;&nbsp;].<br>
+
+<#externalAgent> <br>
+&nbsp;&nbsp;a acp:AccessControl; <br>
+&nbsp;&nbsp;acp:apply [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;a acp:Policy; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allow acl:Read; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;acp:allOf [ <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a acp:Matcher; <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;acp:agent <http://localhost:3000/ExternalAgent/profile/card#me> <br>
+&nbsp;&nbsp;&nbsp;&nbsp;] <br>
+&nbsp;&nbsp;].<br>
 
 # Clark-Wilson and the Security App
 
