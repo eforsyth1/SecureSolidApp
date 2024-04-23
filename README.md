@@ -43,7 +43,8 @@ The following is based upon the set using IntelliJ, however could simply be ran 
 
 **Setting Up the Secure Solid App**
 1. Download the repository on this branch (main) - the client ID is within the files already.
-2. The Pod intended to be retrieved must be manually added to the file. Please enter the WebID in **src/acpControl.tsx** on line 18, e.g. https://solidweb.me/Example/ ***
+2. The Pod intended to be retrieved must be manually added to the file. Please enter the WebID in **src/acpControl.tsx** on line 18, e.g. https://solidweb.me/Example/
+   * Please refer to *** at the bottom of this page for more information
 3. Run the app by entering **npm run start** (the security app should not run on the same port as SolidFileManager)
 
 **Pod ACP Policy**
